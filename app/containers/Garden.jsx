@@ -28,33 +28,6 @@ import Drawer from 'material-ui/Drawer';
 
 class Garden extends Component {
 
-  // constructor() {
-  //   super()
-  //   this.state = {
-  //     open: false,
-  //   }
-  // }
-
-  // resetGarden(width = 1, height = 1, name = 'New Garden') {
-
-  //   let garden = {
-  //     name: name,
-  //     width: width,
-  //     height: height,
-  //     plots: []
-  //   }
-
-  //   let numPlots = width*height;
-
-  //   for (let i = 0; i < numPlots; i++) {
-  //     garden.plots.push({
-  //       plant: 'testPlant'+i
-  //     })
-  //   }
-
-  //   return garden;
-  // }
-
   handleToggle = () => this.setState({open: !this.state.open});
 
   render() {

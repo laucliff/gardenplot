@@ -12,7 +12,7 @@ export default class GardenPlot extends Component {
 
   render() {
 
-    let squares = this.props.garden.plots.map((square, index) => {
+    let squares = this.props.garden.squares.map((square, index) => {
       return <GardenSquare key={index} index={index} square={square}></GardenSquare>
     })
 
