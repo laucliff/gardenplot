@@ -7,9 +7,11 @@ const cx = classNames.bind(styles);
 
 export default class GardenSquare extends Component {
 
-
   render() {
-    return (<div className={cx('gardensquare')}>Square: {this.props.square.plant}</div>);
+    return (
+      <div className={cx('gardensquare')}>
+        Square: {this.props.square.type}
+      </div>);
   }
 
 };

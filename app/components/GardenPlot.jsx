@@ -6,20 +6,22 @@ import styles from 'css/components/gardenplot';
 
 const cx = classNames.bind(styles);
 
+import Drawer from 'material-ui/Drawer';
+
 export default class GardenPlot extends Component {
 
   render() {
 
     let squares = this.props.garden.plots.map((square, index) => {
-      return <GardenSquare key={index} square={square}></GardenSquare>
+      return <GardenSquare key={index} index={index} square={square}></GardenSquare>
     })
 
     let plotWidth = this.props.garden.width * 100;
 
     return (
-      <div className={cx('gardenplot')} style={{width: plotWidth}}>
-        {squares}
-      </div>
+        <div className={cx('gardenplot')} style={{width: plotWidth}}>
+          {squares}
+        </div>
       );
   }
 
