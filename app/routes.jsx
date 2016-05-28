@@ -7,6 +7,8 @@ import About from 'containers/About';
 import LoginOrRegister from 'containers/LoginOrRegister';
 import Dashboard from 'containers/Dashboard';
 
+import Garden from 'containers/Garden';
+
 /*
  * @param {Redux Store}
  * We require store as an argument here because we wish to get
@@ -39,6 +41,7 @@ export default (store) => {
       <Route path="login" component={LoginOrRegister} onEnter={redirectAuth} />
       <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
       <Route path="about" component={About} />
+      <Route path="garden" component={Garden} />
     </Route>
   );
 };
