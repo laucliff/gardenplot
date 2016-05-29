@@ -10,29 +10,39 @@ const cx = classNames.bind(styles);
 
 class GardenSquare extends Component {
 
+
   activateDrawer = () => {
     this.props.setDrawerContext(this.props.index)
     this.props.openDrawer()
   }
 
+  percentGrown(square) {
+    if (!square.maturationTime) {
+      return;
+    } else {
+      const percentage = Math.round((Date.now() - square.datePlanted) / (square.maturationTime * 1000*60*60*24));
+      return (<div>{percentage}%</div>);
+    }
+  }
+
 
   render() {
 
+    let classNames = ['gardensquare'];
+    if (this.props.isActive) classNames.push('active')
+
     return (
-      <div className={cx('gardensquare')} onClick={this.activateDrawer}>
-        Square: {this.props.square.plantId}
+      <div className={cx(classNames)} onClick={this.activateDrawer}>
+        {this.percentGrown(this.props.square)}
       </div>);
   }
 
 };
 
-GardenSquare.propTypes = {
-  square: PropTypes.object,
-  openDrawer: PropTypes.func.isRequired
-}
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
   return {
+    isActive: state.drawer.squareIndex == ownProps.index
   };
 }
 

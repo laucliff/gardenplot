@@ -14,12 +14,15 @@ class PlantDrawer extends Component {
    return milliseconds / (1000*60*60*24);
   }
 
+  // Where is best practice location for helper function like this? bound to store? inserted in mapStateToProps?
   daysToMature(square) {
     return Math.round(square.maturationTime - this.millToDays(Date.now() - square.datePlanted))
   }
 
+  // Small Card to preview plant data
   plantPreview(plant) {
 
+    // Don't show anything if no currently selected plant.
     if (!plant) {
       return;
     }
@@ -34,6 +37,7 @@ class PlantDrawer extends Component {
     );
   }
 
+  // Drawer view when no square is selected.
   emptyView() {
     return (
         <div>
@@ -42,6 +46,7 @@ class PlantDrawer extends Component {
       );
   }
 
+  // Drawer view when selected square is currently dirt.
   unplantedView() {
 
     const plants = this.props.plants;
@@ -64,6 +69,7 @@ class PlantDrawer extends Component {
 
   }
 
+  // Drawer view when square is currently planted.
   plantedView() {
     const plantName = this.props.selectedPlant.name;
     const daysToMature = this.daysToMature(this.props.currentSquare);
