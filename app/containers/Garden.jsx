@@ -39,8 +39,6 @@ class Garden extends Component {
 
     return (
       <div>
-        Garden
-
         <SelectField value={this.props.garden.width} onChange={(e, i, width) => { this.props.resetGarden({width}) }}>
           {items}
         </SelectField>

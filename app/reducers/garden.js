@@ -29,14 +29,15 @@ export default function garden(state = {
     }
     case UPDATE_GARDEN_SQUARE: {
       const plant = {
-        plantId: action.plantId || defaultPlantId,
+        plantId: action.plant.id || defaultPlantId,
+        maturationTime: action.plant.maturationTime,
         datePlanted: new Date(),
         lastWatered: new Date()
       };
 
       return update(state, {
         squares: {
-          [action.index]: {
+          [action.squareIndex]: {
             $merge: plant
           }
         }

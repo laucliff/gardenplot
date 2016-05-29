@@ -10,8 +10,8 @@ const cx = classNames.bind(styles);
 
 class GardenSquare extends Component {
 
-  activateDrawer = (id) => {
-    this.props.setDrawerContext(id)
+  activateDrawer = () => {
+    this.props.setDrawerContext(this.props.index)
     this.props.openDrawer()
   }
 
@@ -19,7 +19,7 @@ class GardenSquare extends Component {
   render() {
 
     return (
-      <div className={cx('gardensquare')} onClick={this.activateDrawer.bind(this, this.props.index)}>
+      <div className={cx('gardensquare')} onClick={this.activateDrawer}>
         Square: {this.props.square.plantId}
       </div>);
   }
