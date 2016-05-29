@@ -51,8 +51,8 @@ class Garden extends Component {
 
         <GardenPlot garden={this.props.garden}></GardenPlot>
 
-        <Drawer openSecondary={true} open={false}>
-          <PlantDrawer/>
+        <Drawer openSecondary={true} open={this.props.drawerOpen}>
+          <PlantDrawer squareIndex={this.props.squareIndex}/>
         </Drawer>
 
       </div>
@@ -68,6 +68,8 @@ Garden.propTypes = {
 
 function mapStateToProps(state) {
   return {
+    squareIndex: state.drawer.squareIndex,
+    drawerOpen: state.drawer.isOpen,
     garden: state.garden
   };
 }

@@ -4,6 +4,7 @@ import topic from 'reducers/topic';
 import message from 'reducers/message';
 
 import garden from 'reducers/garden';
+import drawer from 'reducers/drawer';
 
 import { routerReducer as routing } from 'react-router-redux';
 
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   user,
   topic,
   message,
+  drawer,
   routing,
 });
 

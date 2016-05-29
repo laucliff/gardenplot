@@ -7,6 +7,9 @@ import createRoutes from 'routes';
 import configureStore from 'store/configureStore';
 import preRenderMiddleware from 'middlewares/preRenderMiddleware';
 
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+
 // Grab the state from a global injected into
 // server-generated HTML
 const initialState = window.__INITIAL_STATE__;
@@ -35,6 +38,9 @@ function onUpdate() {
   preRenderMiddleware(store.dispatch, components, params);
 }
 
+// Needed for onTouchTap
+// http://stackoverflow.com/a/34015469/988941
+injectTapEventPlugin();
 
 // Router converts <Route> element hierarchy to a route config:
 // Read more https://github.com/rackt/react-router/blob/latest/docs/Glossary.md#routeconfig

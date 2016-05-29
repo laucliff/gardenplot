@@ -1,14 +1,19 @@
-import {RESET_GARDEN} from 'types';
+import {RESET_GARDEN, UPDATE_GARDEN_SQUARE, SET_GARDEN_DRAWER_CONTEXT} from 'types';
+import update from 'react/lib/update';
+
+const newSquare = {
+  plantId: 0
+};
+const defaultPlantId = 0;
 
 export default function garden(state = {
   name: 'New Garden',
   width: 1,
   height: 1,
-  squares: []
+  squares: [newSquare]
 }, action = {}) {
   switch (action.type) {
     case RESET_GARDEN: {
-
       const name = action.name || state.name;
       const width = action.width || state.width;
       const height = action.height || state.height;
@@ -17,28 +22,29 @@ export default function garden(state = {
       const numSquares = width * height;
 
       for (let i = 0; i < numSquares; i++) {
-        squares.push({
-          type: 'testPlant' + i
-        });
+        squares.push(newSquare);
       }
 
       return Object.assign({}, state, { name, width, height, squares });
+    }
+    case UPDATE_GARDEN_SQUARE: {
+      const plant = {
+        plantId: action.plantId || defaultPlantId,
+        datePlanted: new Date(),
+        lastWatered: new Date()
+      };
+
+      return update(state, {
+        squares: {
+          [action.index]: {
+            $merge: plant
+          }
+        }
+      });
     }
     default: {
       return state;
     }
 
-    // action.index is square index in squares
-
-    // case UPDATE_SQUARE:
-
-    //   let type = 'testPlant';
-    //   let plant = {
-    //     type: type,
-    //     datePlanted: new Date(),
-    //     lastWatered: new Date()
-    //   }
-
-    //   return Object.assign({}, state, {});
   }
 }
