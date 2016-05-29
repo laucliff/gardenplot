@@ -26,8 +26,6 @@ const App = ({children}) => {
   return (
     <MuiThemeProvider>
       <div className={cx('app')}>
-        <Navigation />
-        <Message />
           {children}
       </div>
     </MuiThemeProvider>

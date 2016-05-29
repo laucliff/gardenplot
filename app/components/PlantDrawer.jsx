@@ -8,6 +8,8 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 
+import {List, ListItem} from 'material-ui/List';
+
 class PlantDrawer extends Component {
 
   millToDays(milliseconds) {
@@ -28,21 +30,20 @@ class PlantDrawer extends Component {
     }
 
     return (
-      <div>
-        <div>
-          Matures in {plant.maturationTime} days.
-        </div>
-
-      </div>
+      <ListItem disabled={true}>
+          <p>Plant in {plant.light}.</p>
+          <p>Matures in {plant.maturationTime} days.</p>
+          <p>{plant.description}</p>
+      </ListItem>
     );
   }
 
   // Drawer view when no square is selected.
   emptyView() {
     return (
-        <div>
-          No Garden Square selected.
-        </div>
+        <List>
+          <ListItem disabled={true}>No Garden Square selected.</ListItem>
+        </List>
       );
   }
 
@@ -53,18 +54,18 @@ class PlantDrawer extends Component {
     const plantItems = plants.map((plant, index) => { return <MenuItem value={index} key={plant.id} primaryText={plant.name} />})
 
     return (
-      <div>
-        Plant a seed.
-
-        <SelectField value={this.props.selectedPlantIndex} onChange={(e, i, v) => {this.props.selectPlant(v)}}>
-          {plantItems}
-        </SelectField>
-
-        <div>
-          {this.plantPreview(this.props.selectedPlant)}
-          <RaisedButton label={'PLANT'} disabled={(!this.props.selectedPlant)} onClick={() => this.props.updateSquare(this.props.squareIndex, this.props.selectedPlant)} />
-        </div>
-      </div>
+      <List>
+        <ListItem disabled={true}>Plant a seed.</ListItem>
+        <ListItem disabled={true}>
+          <SelectField value={this.props.selectedPlantIndex} onChange={(e, i, v) => {this.props.selectPlant(v)}}>
+            {plantItems}
+          </SelectField>
+        </ListItem>
+        {this.plantPreview(this.props.selectedPlant)}
+        <ListItem disabled={true}>
+            <RaisedButton label={'PLANT'} fullWidth={true} disabled={(!this.props.selectedPlant)} onClick={() => this.props.updateSquare(this.props.squareIndex, this.props.selectedPlant)} />
+        </ListItem>
+      </List>
     );
 
   }
@@ -76,11 +77,11 @@ class PlantDrawer extends Component {
     const datePlanted = this.props.currentSquare.datePlanted.toDateString();
 
     return (
-        <div>
-          <div> {plantName} </div>
-          <div> Planted on {datePlanted} </div>
-          <div>Matures in {daysToMature} days.</div>
-        </div>
+        <List>
+          <ListItem primaryText={plantName} disabled={true}/>
+          <ListItem disabled={true}>Planted on {datePlanted}</ListItem>
+          <ListItem disabled={true}>Matures in {daysToMature} days.</ListItem>
+        </List>
       );
   }
 
