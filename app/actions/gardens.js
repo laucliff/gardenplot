@@ -5,6 +5,10 @@ export function resetGarden(options) {
   return Object.assign({ type: types.RESET_GARDEN }, options);
 }
 
+export function loadGarden(garden) {
+  return Object.assign({ type: types.LOAD_GARDEN }, {garden});
+}
+
 export function updateSquare(squareIndex, plant) {
 
   return {

@@ -4,30 +4,56 @@ import {connect} from 'react-redux';
 import GardenPlot from 'components/GardenPlot';
 import PlantDrawer from 'components/PlantDrawer';
 
-import { resetGarden } from 'actions/gardens';
+import { resetGarden, loadGarden } from 'actions/gardens';
 import { setDrawerContext } from 'actions/drawer';
 
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import Drawer from 'material-ui/Drawer';
+import RaisedButton from 'material-ui/RaisedButton';
 
-// const garden = {
-//   name: 'test garden',
-//   width: 2,
-//   height: 3,
-//   plots: [{
-//     plant: 'testPlant',
-//     planted: 0,
-//     maturationTime: 100,
-//   },{
-//     plant: 'testPlant2',
-//     planted: 0,
-//     maturationTime: 50,
-//   }]
-// }
+const demoGarden = {
+   "name":"Demo Garden",
+   "width":3,
+   "height":2,
+   "squares":[
+      {
+         "plantId":0
+      },
+      {
+         "plantId":1,
+         "maturationTime":75,
+         "datePlanted":"2016-05-29T22:49:01.530Z"
+      },
+      {
+         "plantId":2,
+         "maturationTime":72,
+         "datePlanted":"2016-05-11T22:49:05.377Z"
+      },
+      {
+         "plantId":2,
+         "maturationTime":72,
+         "datePlanted":"2016-04-23T22:49:09.533Z"
+      },
+      {
+         "plantId":2,
+         "maturationTime":72,
+         "datePlanted":"2016-04-05T22:49:13.741Z"
+      },
+      {
+         "plantId":1,
+         "maturationTime":75,
+         "datePlanted":"2016-03-13T22:49:17.230Z"
+      }
+   ]
+}
 
 
 class Garden extends Component {
+
+  demoGarden() {
+    this.props.loadGarden(demoGarden)
+  }
 
   handleSelect(key, event, index, value) {
     this.props.setDrawerContext();
@@ -43,6 +69,7 @@ class Garden extends Component {
 
     return (
       <div>
+        <RaisedButton label={'Demo Garden'} onClick={this.demoGarden.bind(this)} />
         <div>
           <SelectField value={this.props.garden.width} onChange={this.handleSelect.bind(this, 'width')}>
             {numList}
@@ -79,6 +106,6 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps, { resetGarden, setDrawerContext })(Garden);
+export default connect(mapStateToProps, { resetGarden, loadGarden, setDrawerContext })(Garden);
 
 

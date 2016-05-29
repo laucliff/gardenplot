@@ -76,11 +76,15 @@ class PlantDrawer extends Component {
     const daysToMature = this.daysToMature(this.props.currentSquare);
     const datePlanted = this.props.currentSquare.datePlanted.toDateString();
 
+    const plantStatus = (daysToMature > 0) ?
+      (<ListItem disabled={true}>Matures in {daysToMature} days.</ListItem>) :
+      (<ListItem disabled={true}>Fully Grown!</ListItem>)
+
     return (
         <List>
           <ListItem primaryText={plantName} disabled={true}/>
           <ListItem disabled={true}>Planted on {datePlanted}</ListItem>
-          <ListItem disabled={true}>Matures in {daysToMature} days.</ListItem>
+          {plantStatus}
         </List>
       );
   }

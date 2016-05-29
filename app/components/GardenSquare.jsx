@@ -17,10 +17,15 @@ class GardenSquare extends Component {
   }
 
   percentGrown(square) {
+    const growTime = Date.now() - square.datePlanted;
+    const maturationTime = square.maturationTime * 1000*60*60*24;
+
     if (!square.maturationTime) {
       return;
+    } else if (growTime >= maturationTime) {
+      return (<div>=)</div>);
     } else {
-      const percentage = Math.round((Date.now() - square.datePlanted) / (square.maturationTime * 1000*60*60*24));
+      const percentage = Math.round(100 * (growTime / maturationTime));
       return (<div>{percentage}%</div>);
     }
   }
