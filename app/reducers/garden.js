@@ -1,4 +1,4 @@
-import {RESET_GARDEN, LOAD_GARDEN, UPDATE_GARDEN_SQUARE} from 'types';
+import {RESET_GARDEN, LOAD_GARDEN, UPDATE_GARDEN_SQUARE, RESET_GARDEN_SQUARE} from 'types';
 import update from 'react/lib/update';
 
 const newSquare = {
@@ -6,6 +6,7 @@ const newSquare = {
 };
 const defaultPlantId = 0;
 
+// Convert timestamps from text to datetime
 function parseTimestamps(garden) {
 
   const newGarden = Object.assign({}, garden);
@@ -27,6 +28,7 @@ function parseTimestamps(garden) {
   return newGarden;
 }
 
+// replace the existing garden with a new one
 function resetGarden(state, garden) {
   const name = garden.name || state.name;
   const width = garden.width || state.width;
@@ -73,6 +75,15 @@ export default function garden(state = {
           }
         }
       });
+    }
+    case RESET_GARDEN_SQUARE: {
+      return update(state, {
+        squares: {
+          [action.squareIndex]: {
+            $set: newSquare
+          }
+        }
+      })
     }
     default: {
       return state;

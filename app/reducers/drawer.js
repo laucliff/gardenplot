@@ -7,14 +7,10 @@ export default function message(state = {
 }, action = {}) {
   switch (action.type) {
     case OPEN_DRAWER: {
-      const openState = true;
-
-      return Object.assign({}, state, {isOpen: openState});
+      return Object.assign({}, state, {isOpen: true});
     }
     case CLOSE_DRAWER: {
-      const openState = false;
-
-      return Object.assign({}, state, {isOpen: openState});
+      return Object.assign({}, state, {isOpen: false});
     }
     case SET_GARDEN_DRAWER_CONTEXT: {
       const squareIndex = {

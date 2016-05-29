@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {updateSquare} from 'actions/gardens';
+import {updateSquare, resetSquare} from 'actions/gardens';
 import {selectPlant} from 'actions/drawer';
 
 import SelectField from 'material-ui/SelectField';
@@ -85,6 +85,9 @@ class PlantDrawer extends Component {
           <ListItem primaryText={plantName} disabled={true}/>
           <ListItem disabled={true}>Planted on {datePlanted}</ListItem>
           {plantStatus}
+          <ListItem disabled={true}>
+              <RaisedButton label={'UPROOT'} fullWidth={true} onClick={() => this.props.resetSquare(this.props.squareIndex)} />
+          </ListItem>
         </List>
       );
   }
@@ -117,4 +120,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps, {updateSquare, selectPlant})(PlantDrawer);
+export default connect(mapStateToProps, {updateSquare, resetSquare, selectPlant})(PlantDrawer);

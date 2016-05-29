@@ -6,14 +6,17 @@ export function resetGarden(options) {
 }
 
 export function loadGarden(garden) {
-  return Object.assign({ type: types.LOAD_GARDEN }, {garden});
+  return { type: types.LOAD_GARDEN, garden};
 }
 
 export function updateSquare(squareIndex, plant) {
-
   return {
     type: types.UPDATE_GARDEN_SQUARE,
     squareIndex,
     plant
   };
+}
+
+export function resetSquare(squareIndex) {
+  return { type: types.RESET_GARDEN_SQUARE, squareIndex};
 }
