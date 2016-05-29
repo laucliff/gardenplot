@@ -5,6 +5,7 @@ import GardenPlot from 'components/GardenPlot';
 import PlantDrawer from 'components/PlantDrawer';
 
 import { resetGarden } from 'actions/gardens';
+import { setDrawerContext } from 'actions/drawer';
 
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
@@ -28,24 +29,29 @@ import Drawer from 'material-ui/Drawer';
 
 class Garden extends Component {
 
-  handleToggle = () => this.setState({open: !this.state.open});
+  handleSelect(key, event, index, value) {
+    this.props.setDrawerContext();
+    this.props.resetGarden({[key]: value});
+  }
 
   render() {
 
-    let items = [];
+    let numList = [];
     for (let i = 1; i <= 5; i++ ) {
-      items.push(<MenuItem value={i} key={i} primaryText={`${i}`} />);
+      numList.push(<MenuItem value={i} key={i} primaryText={`${i}`} />);
     }
 
     return (
       <div>
-        <SelectField value={this.props.garden.width} onChange={(e, i, width) => { this.props.resetGarden({width}) }}>
-          {items}
-        </SelectField>
-        X
-        <SelectField value={this.props.garden.height} onChange={(e, i, height) => { this.props.resetGarden({height}) }}>
-          {items}
-        </SelectField>
+        <div>
+          <SelectField value={this.props.garden.width} onChange={this.handleSelect.bind(this, 'width')}>
+            {numList}
+          </SelectField>
+          <span> by </span>
+          <SelectField value={this.props.garden.height} onChange={this.handleSelect.bind(this, 'height')}>
+            {numList}
+          </SelectField>
+        </div>
 
         <GardenPlot garden={this.props.garden}></GardenPlot>
 
@@ -73,6 +79,6 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps, { resetGarden })(Garden);
+export default connect(mapStateToProps, { resetGarden, setDrawerContext })(Garden);
 
 
