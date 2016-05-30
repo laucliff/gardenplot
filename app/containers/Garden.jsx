@@ -12,6 +12,7 @@ import MenuItem from 'material-ui/MenuItem';
 import Drawer from 'material-ui/Drawer';
 import RaisedButton from 'material-ui/RaisedButton';
 
+// This is just here for debug/demo
 const demoGarden = {
    "name":"Demo Garden",
    "width":3,
