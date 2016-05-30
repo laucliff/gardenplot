@@ -92,11 +92,6 @@ class Garden extends Component {
 
 };
 
-Garden.propTypes = {
-  garden: PropTypes.object,
-  resetGarden: PropTypes.func.isRequired
-}
-
 function mapStateToProps(state) {
   return {
     squareIndex: state.drawer.squareIndex,
